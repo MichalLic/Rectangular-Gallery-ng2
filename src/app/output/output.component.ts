@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {UploadService} from '../upload.service';
 import * as firebase from 'firebase';
 
 @Component({
@@ -10,8 +11,7 @@ import * as firebase from 'firebase';
 
 export class OutputComponent implements OnInit {
   fileName: string;
-  showImage = false;
-  url: string;
+  urls = new Array;
   firebaseConfig = {
     apiKey: 'AIzaSyCQBlpqtOGwn4ujwTTj90NYZ4e-wNnz5w4',
     authDomain: 'rectangulargallery.firebaseapp.com',
@@ -22,9 +22,8 @@ export class OutputComponent implements OnInit {
   };
 
 
-  constructor() {
+  constructor(private uploadService: UploadService) {
   }
-
 
   ngOnInit() {
     firebase.initializeApp(this.firebaseConfig);
@@ -36,16 +35,25 @@ export class OutputComponent implements OnInit {
     const metadata = {
       contentType: 'image/jpeg'
     };
-
     firebase.storage().ref().child('images/' + file.name).put(file, metadata);
-
     firebase.storage().ref()
       .child('images/' + file.name)
       .getDownloadURL().then(url => {
       console.log(url);
-      this.url = url;
+      this.urls.push(
+        {url: url}
+      );
     });
-    this.showImage = true;
+  }
+
+  onSave() {
+    console.log(this.urls);
+    this.uploadService.uploadUrl(this.urls)
+      .subscribe(
+        (response) => console.log(response),
+        (error) => console.log(error)
+      );
+
   }
 
 }

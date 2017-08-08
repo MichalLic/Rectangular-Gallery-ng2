@@ -10,6 +10,7 @@ import {OutputComponent} from './output/output.component';
 import {EditorComponent} from './editor/editor.component';
 import {GalleryComponent} from './gallery/gallery.component';
 import {HeaderComponent} from './header/header.component';
+import {UploadService} from './upload.service';
 
 
 const appRoutes: Routes = [
@@ -31,7 +32,7 @@ const appRoutes: Routes = [
     HttpModule,
     RouterModule.forRoot(appRoutes),
   ],
-  providers: [],
+  providers: [UploadService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

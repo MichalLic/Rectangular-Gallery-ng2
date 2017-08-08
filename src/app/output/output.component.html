@@ -1,8 +1,9 @@
 <div class="container">
   <div class="row">
-    <h2>
-      Upload your files!
-    </h2>
-    <input type="file" (change)="changeListner($event)"/>
+    <div class="col-xs-12">
+      <h2>Upload your files!</h2>
+      <input type="file" (change)="changeListner($event)"/><br>
+      <button type="button" class="btn btn-primary" (click)="onSave()">Save file</button>
+    </div>
   </div>
 </div>
