@@ -3,14 +3,13 @@ import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {RouterModule, Routes} from '@angular/router';
-import {ImageUploadModule} from 'angular2-image-upload';
+import {AngularFireModule} from 'angularfire2';
 
 import {AppComponent} from './app.component';
 import {OutputComponent} from './output/output.component';
 import {EditorComponent} from './editor/editor.component';
 import {GalleryComponent} from './gallery/gallery.component';
 import {HeaderComponent} from './header/header.component';
-import {AngularFireModule} from 'angularfire2';
 
 
 const appRoutes: Routes = [
@@ -31,7 +30,6 @@ const appRoutes: Routes = [
     FormsModule,
     HttpModule,
     RouterModule.forRoot(appRoutes),
-    ImageUploadModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

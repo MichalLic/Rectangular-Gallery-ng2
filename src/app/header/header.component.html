@@ -1,9 +1,29 @@
 <header>
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <a routerLink="output">Upload</a>
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button appDropdown type="button" class="navbar-toggle" data-toggle="collapse"
+                data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Rozwiń nawigację</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a routerLink="/" class="navbar-brand">Rectangular Gallery</a>
+      </div>
+      <div
+        class="navbar-collapse collapse" id="bs-example-navbar-collapse-1">
+        <ul #menuList class="nav navbar-nav">
+          <li>
+            <a routerLink="output"
+               class="active dropdown-toggle" data-toggle="dropdown">Upload</a>
+          </li>
+          <li>
+            <a routerLink="output"
+               class="active dropdown-toggle" data-toggle="dropdown">Upload</a>
+          </li>
+        </ul>
       </div>
     </div>
-  </div>
+  </nav>
 </header>
