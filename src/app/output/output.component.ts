@@ -12,21 +12,13 @@ import * as firebase from 'firebase';
 export class OutputComponent implements OnInit {
   fileName: string;
   urls = new Array;
-  firebaseConfig = {
-    apiKey: 'AIzaSyCQBlpqtOGwn4ujwTTj90NYZ4e-wNnz5w4',
-    authDomain: 'rectangulargallery.firebaseapp.com',
-    databaseURL: 'https://rectangulargallery.firebaseio.com',
-    projectId: 'rectangulargallery',
-    storageBucket: 'rectangulargallery.appspot.com',
-    messagingSenderId: '570084892486'
-  };
 
 
   constructor(private uploadService: UploadService) {
   }
 
   ngOnInit() {
-    firebase.initializeApp(this.firebaseConfig);
+
   }
 
   changeListner(event) {

@@ -11,6 +11,17 @@ import {EditorComponent} from './editor/editor.component';
 import {GalleryComponent} from './gallery/gallery.component';
 import {HeaderComponent} from './header/header.component';
 import {UploadService} from './upload.service';
+import * as firebase from 'firebase/app';
+
+const FIREBASECONFIG = {
+  apiKey: 'AIzaSyCQBlpqtOGwn4ujwTTj90NYZ4e-wNnz5w4',
+  authDomain: 'rectangulargallery.firebaseapp.com',
+  databaseURL: 'https://rectangulargallery.firebaseio.com',
+  projectId: 'rectangulargallery',
+  storageBucket: 'rectangulargallery.appspot.com',
+  messagingSenderId: '570084892486'
+};
+firebase.initializeApp(FIREBASECONFIG);
 
 
 const appRoutes: Routes = [
@@ -32,7 +43,10 @@ const appRoutes: Routes = [
     HttpModule,
     RouterModule.forRoot(appRoutes),
   ],
-  providers: [UploadService],
+  providers: [
+    {provide: 'FIREBASECONFIG', useValue: FIREBASECONFIG},
+    UploadService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
