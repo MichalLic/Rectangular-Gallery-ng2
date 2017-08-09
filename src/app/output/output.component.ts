@@ -10,9 +10,7 @@ import * as firebase from 'firebase';
 
 
 export class OutputComponent implements OnInit {
-  fileName: string;
   urls = new Array;
-
 
   constructor(private uploadService: UploadService) {
   }
