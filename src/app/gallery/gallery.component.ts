@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {UploadService} from '../upload.service';
 
 @Component({
   selector: 'app-gallery',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GalleryComponent implements OnInit {
 
-  constructor() { }
+  constructor(private uploadService: UploadService) {
+  }
 
   ngOnInit() {
+    this.uploadService.getUrls()
+      .subscribe(
+        (urls) => console.log(urls)
+      );
   }
 
 }
