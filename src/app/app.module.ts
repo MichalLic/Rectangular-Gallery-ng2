@@ -2,16 +2,16 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
-import {RouterModule, Routes} from '@angular/router';
 import {AngularFireModule} from 'angularfire2';
 
 import {AppComponent} from './app.component';
-import {OutputComponent} from './output/output.component';
-import {EditorComponent} from './editor/editor.component';
-import {GalleryComponent} from './gallery/gallery.component';
-import {HeaderComponent} from './header/header.component';
 import {UploadService} from './upload.service';
 import * as firebase from 'firebase/app';
+import {HeaderModule} from './header/header.module';
+import {GalleryModule} from './gallery/gallery.module';
+import {OutputModule} from './output/output.module';
+import {EditorModule} from './editor/editor.module';
+import {AppRoutingModule} from './app.routing.module';
 
 const FIREBASECONFIG = {
   apiKey: 'AIzaSyCQBlpqtOGwn4ujwTTj90NYZ4e-wNnz5w4',
@@ -24,24 +24,19 @@ const FIREBASECONFIG = {
 firebase.initializeApp(FIREBASECONFIG);
 
 
-const appRoutes: Routes = [
-  {path: '', redirectTo: 'output', pathMatch: 'full'},
-  {path: 'output', component: OutputComponent}
-];
-
 @NgModule({
   declarations: [
     AppComponent,
-    OutputComponent,
-    EditorComponent,
-    GalleryComponent,
-    HeaderComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(appRoutes),
+    AppRoutingModule,
+    HeaderModule,
+    GalleryModule,
+    OutputModule,
+    EditorModule
   ],
   providers: [
     {provide: 'FIREBASECONFIG', useValue: FIREBASECONFIG},
