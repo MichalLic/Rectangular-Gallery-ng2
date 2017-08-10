@@ -1,5 +1,21 @@
+.img-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-box{
+  padding-top: 20px;
+}
+
+.img-frame {
+  display: inline-block;
+  padding: 20px;
+}
+
 img {
-  max-width: 75%;
+  max-width: 100%;
   display: block;
   margin: 0 auto;
+  border: 1px solid transparent;
 }

@@ -3,14 +3,43 @@
     <div class="col-xs-12">
       <h2>Edit image!</h2><br>
     </div>
-    <div class="col-xs-4">
-      <label for="inputColor">Choose background color</label>
-      <input type="color" id="inputColor" class="form-control">
-    </div>
-    <hr>
-    <br>
     <div class="col-xs-12">
-      <img [src]="imageUrl" alt="">
+      <div class="col-xs-4 col-xs-offset-1">
+        <label for="bgolor">Background color:</label>
+        <input (change)="bgColor($event)" type="color" id="bgolor" class="form-control">
+      </div>
+      <div class="col-xs-4 col-xs-offset-1">
+        <label for="borderColor">Border color:</label>
+        <input (change)="borderColor($event)" type="color" id="borderColor" class="form-control">
+      </div>
+      <div class="col-xs-4 col-xs-offset-1">
+        <br>
+        <label for="borderWidth">Border width (px):</label>
+        <input (change)="borderWidth($event)" type="number" id="borderWidth" class="form-control">
+      </div>
+      <div class="col-xs-4 col-xs-offset-1">
+        <br>
+        <label for="borderRadius">Border radius (px):</label>
+        <input (change)="borderRadius($event)" type="number" id="borderRadius" class="form-control">
+      </div>
+      <div class="btn-box btn-block col-xs-12 text-center">
+        <hr>
+        <button class="btn btn-primary btn-group-lg" (click)="onSave()">Save</button>
+        <hr>
+      </div>
+    </div>
+    <div class="col-xs-12 img-block">
+      <div class="img-frame"
+           [ngStyle]="{'background-color': backgroundImgColor}">
+        <img
+          src="{{imageUrl?.url}}"
+          alt=""
+          [ngStyle]="{'border-radius.px': borderImgRadius,
+                      'border-width.px': borderImgWidth,
+                      'border-color': borderImgColor}"
+
+        >
+      </div>
     </div>
   </div>
 </div>
