@@ -5,6 +5,9 @@
         <img
           [src]="image.url"
           alt=""
+          [ngStyle]="{'border-radius.px': image.borderRadius,
+                      'border-width.px': image.borderWidth,
+                      'border-color': image.borderColor}"
         >
       </a>
     </div>

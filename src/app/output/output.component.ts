@@ -10,7 +10,6 @@ import * as firebase from 'firebase';
 
 
 export class OutputComponent implements OnInit {
-  urls = [];
   progress;
 
   constructor(private uploadService: UploadService) {
@@ -54,7 +53,6 @@ export class OutputComponent implements OnInit {
       }, function () {
         const downloadURL = uploadTask.snapshot.downloadURL;
         console.log(downloadURL);
-        console.log(that.urls);
         // that.uploadService.getUrls()
         //   .subscribe(
         //     (data) => {
@@ -66,19 +64,14 @@ export class OutputComponent implements OnInit {
         //       }
         //     }
         //   );
-        that.urls.push({
-          url: downloadURL,
-        });
+        that.uploadService.addImgData(
+          {url: downloadURL}
+        );
       });
   }
 
   onSave(event) {
-    console.log(this.urls);
-    this.uploadService.uploadUrl(this.urls)
-      .subscribe(
-        (response) => console.log(response),
-        (error) => console.log(error)
-      );
+    this.uploadService.uploadUrl();
     event.target.disabled = true;
   }
 

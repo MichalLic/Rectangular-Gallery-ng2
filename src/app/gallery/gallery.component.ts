@@ -7,19 +7,14 @@ import {UploadService} from '../upload.service';
   styleUrls: ['./gallery.component.css']
 })
 export class GalleryComponent implements OnInit {
-  images: string;
+  images;
 
   constructor(private uploadService: UploadService) {
   }
 
   ngOnInit() {
-    this.uploadService.getUrls()
-      .subscribe(
-        (data) => {
-          console.log(data);
-          this.images = data;
-        }
-      );
+    this.images = this.uploadService.getImagesData();
+    console.log(this.uploadService.getImagesData());
   }
 
 }

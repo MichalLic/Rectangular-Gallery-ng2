@@ -29,12 +29,7 @@ export class EditorComponent implements OnInit {
           console.log(this.imageId);
         }
       );
-    this.uploadService.getUrls()
-      .subscribe(
-        (data) => {
-          this.imageUrl = data[this.imageId];
-        }
-      );
+    this.imageUrl = this.uploadService.getSingleImageUrl(this.imageId);
   }
 
   bgColor(event) {
@@ -58,18 +53,16 @@ export class EditorComponent implements OnInit {
   }
 
   onSave() {
-    this.imgStyle.push(
-      {
-        borderColor: this.borderImgColor,
-        borderWidth: this.borderImgWidth,
-        borderRadius: this.borderImgRadius
-      },
-    );
+    const imageStyle = {
+      url: this.uploadService.getSingleImageUrl(this.imageId),
+      borderColor: this.borderImgColor,
+      borderWidth: this.borderImgWidth,
+      borderRadius: this.borderImgRadius
+    };
     this.imgFrameStyle.push({
       bgColor: this.backgroundImgColor
     });
-    console.log(this.imgStyle);
-    console.log(this.imgFrameStyle);
+    this.uploadService.updateImageData(this.imageId, imageStyle);
   }
 
 }

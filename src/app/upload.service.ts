@@ -4,12 +4,30 @@ import 'rxjs/Rx';
 
 @Injectable()
 export class UploadService {
+  private imagesData = [];
+
   constructor(private http: Http) {
   }
 
-  uploadUrl(urls: any[], id) {
+  addImgData(imageData) {
+    this.imagesData.push(imageData);
+  }
+
+  getImagesData() {
+    return this.imagesData.slice();
+  }
+
+  getSingleImageUrl(id) {
+    return this.imagesData[id].url;
+  }
+
+  updateImageData(index, newData) {
+    this.imagesData[index] = newData;
+  }
+
+  uploadUrl() {
     const headers = new Headers({'Content-Type': 'application/json'});
-    return this.http.put('https://rectangulargallery.firebaseio.com/data.json', urls, {headers: headers});
+    return this.http.put('https://rectangulargallery.firebaseio.com/data.json', this.getImagesData(), {headers: headers});
   }
 
   getUrls() {

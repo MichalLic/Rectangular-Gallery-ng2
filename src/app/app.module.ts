@@ -40,7 +40,7 @@ firebase.initializeApp(FIREBASECONFIG);
   ],
   providers: [
     {provide: 'FIREBASECONFIG', useValue: FIREBASECONFIG},
-    UploadService,
+    UploadService
   ],
   bootstrap: [AppComponent]
 })

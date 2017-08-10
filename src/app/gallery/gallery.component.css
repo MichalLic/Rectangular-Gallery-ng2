@@ -3,5 +3,6 @@ img {
   height: 250px;
   margin: 0 auto;
   display: block;
-  padding-bottom: 15px;
+  margin-bottom: 15px;
+  border: 1px solid transparent;
 }
