@@ -11,6 +11,7 @@ import * as firebase from 'firebase';
 
 export class OutputComponent implements OnInit {
   urls = new Array;
+  progress;
 
   constructor(private uploadService: UploadService) {
   }
@@ -30,6 +31,7 @@ export class OutputComponent implements OnInit {
       function (snapshot) {
         const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         console.log('Upload is ' + progress + '% done');
+        that.progress = progress;
         switch (snapshot.state) {
           case firebase.storage.TaskState.PAUSED:
             console.log('Upload is paused');
@@ -53,27 +55,30 @@ export class OutputComponent implements OnInit {
         const downloadURL = uploadTask.snapshot.downloadURL;
         console.log(downloadURL);
         console.log(that.urls);
-        that.uploadService.getUrls()
-          .subscribe(
-            (data) => {
-              for (const item of data) {
-                that.urls.push(item);
-              }
-            }
-          );
+        // that.uploadService.getUrls()
+        //   .subscribe(
+        //     (data) => {
+        //       for (const item of data) {
+        //         if (item !== downloadURL) {
+        //           console.log(item !== downloadURL);
+        //           that.urls.push(item);
+        //         }
+        //       }
+        //     }
+        //   );
         that.urls.push(downloadURL);
         console.log(that.urls);
       });
   }
 
-  onSave() {
+  onSave(event) {
     console.log(this.urls);
     this.uploadService.uploadUrl(this.urls)
       .subscribe(
         (response) => console.log(response),
         (error) => console.log(error)
       );
-
+    event.target.disabled = true;
   }
 
 }

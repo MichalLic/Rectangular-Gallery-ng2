@@ -3,7 +3,16 @@
     <div class="col-xs-12">
       <h2>Upload your files!</h2>
       <input type="file" (change)="changeListner($event)"/><br>
-      <button type="button" class="btn btn-primary" (click)="onSave()">Save file</button>
+      <div class="progress">
+        <div class="progress-bar"
+             role="progressbar"
+             aria-valuenow="100"
+             aria-valuemin="100"
+             aria-valuemax="20"
+             [ngStyle]="{'width.%': progress}">
+        </div>
+      </div>
+      <button type="button" *ngIf="progress === 100" class="btn btn-primary" (click)="onSave($event)">Save file</button>
     </div>
   </div>
 </div>
