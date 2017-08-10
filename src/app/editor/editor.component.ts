@@ -9,12 +9,11 @@ import {ActivatedRoute, Params, Route} from '@angular/router';
 })
 export class EditorComponent implements OnInit {
   imageId: number;
-  imageUrl: string;
+  imageData;
   backgroundImgColor;
   borderImgColor;
   borderImgWidth;
   borderImgRadius;
-  imgStyle = [];
   imgFrameStyle = [];
 
   constructor(private uploadService: UploadService,
@@ -29,7 +28,10 @@ export class EditorComponent implements OnInit {
           console.log(this.imageId);
         }
       );
-    this.imageUrl = this.uploadService.getSingleImageUrl(this.imageId);
+    this.imageData = this.uploadService.getSingleImageData(this.imageId);
+    this.borderImgRadius = this.imageData.borderRadius;
+    this.borderImgWidth = this.imageData.borderWidth;
+    this.borderImgColor = this.imageData.borderColor;
   }
 
   bgColor(event) {
@@ -54,7 +56,7 @@ export class EditorComponent implements OnInit {
 
   onSave() {
     const imageStyle = {
-      url: this.uploadService.getSingleImageUrl(this.imageId),
+      url: this.uploadService.getSingleImageData(this.imageId).url,
       borderColor: this.borderImgColor,
       borderWidth: this.borderImgWidth,
       borderRadius: this.borderImgRadius
@@ -63,6 +65,11 @@ export class EditorComponent implements OnInit {
       bgColor: this.backgroundImgColor
     });
     this.uploadService.updateImageData(this.imageId, imageStyle);
+    this.uploadService.uploadUrl()
+      .subscribe(
+        (response) => console.log(response),
+        (error) => console.log(error),
+      );
   }
 
 }

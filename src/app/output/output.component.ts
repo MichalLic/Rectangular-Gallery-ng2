@@ -52,26 +52,18 @@ export class OutputComponent implements OnInit {
         // }
       }, function () {
         const downloadURL = uploadTask.snapshot.downloadURL;
-        console.log(downloadURL);
-        // that.uploadService.getUrls()
-        //   .subscribe(
-        //     (data) => {
-        //       for (const item of data) {
-        //         if (item !== downloadURL) {
-        //           console.log(item !== downloadURL);
-        //           that.urls.push(item);
-        //         }
-        //       }
-        //     }
-        //   );
         that.uploadService.addImgData(
           {url: downloadURL}
         );
+        console.log(that.uploadService.getImagesData());
       });
   }
 
   onSave(event) {
-    this.uploadService.uploadUrl();
+    this.uploadService.uploadUrl().subscribe(
+      (response) => console.log(response),
+      (error) => console.log(error),
+    );
     event.target.disabled = true;
   }
 

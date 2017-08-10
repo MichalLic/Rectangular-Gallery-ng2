@@ -17,8 +17,8 @@ export class UploadService {
     return this.imagesData.slice();
   }
 
-  getSingleImageUrl(id) {
-    return this.imagesData[id].url;
+  getSingleImageData(id) {
+    return this.imagesData[id];
   }
 
   updateImageData(index, newData) {
