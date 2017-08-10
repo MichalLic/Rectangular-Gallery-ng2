@@ -1,3 +1,16 @@
-<p>
-  editor works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h2>Edit image!</h2><br>
+    </div>
+    <div class="col-xs-4">
+      <label for="inputColor">Choose background color</label>
+      <input type="color" id="inputColor" class="form-control">
+    </div>
+    <hr>
+    <br>
+    <div class="col-xs-12">
+      <img [src]="imageUrl" alt="">
+    </div>
+  </div>
+</div>

@@ -10,7 +10,7 @@ import * as firebase from 'firebase';
 
 
 export class OutputComponent implements OnInit {
-  urls = new Array;
+  urls = [];
   progress;
 
   constructor(private uploadService: UploadService) {
@@ -66,8 +66,9 @@ export class OutputComponent implements OnInit {
         //       }
         //     }
         //   );
-        that.urls.push(downloadURL);
-        console.log(that.urls);
+        that.urls.push({
+          url: downloadURL,
+        });
       });
   }
 
