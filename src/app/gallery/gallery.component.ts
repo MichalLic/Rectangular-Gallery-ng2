@@ -18,4 +18,9 @@ export class GalleryComponent implements OnInit {
     console.log(this.uploadService.getImagesData());
   }
 
+  onDelete(id) {
+    this.uploadService.deleteImage(id);
+    this.images = this.uploadService.getImagesData();
+  }
+
 }

@@ -23,6 +23,10 @@ export class UploadService {
     return this.imagesData[id];
   }
 
+  deleteImage(id) {
+    this.imagesData.splice(id, 1);
+  }
+
   updateImageData(index, newData) {
     this.imagesData[index] = newData;
   }
