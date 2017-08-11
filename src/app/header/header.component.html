@@ -1,0 +1,33 @@
+<header>
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button appDropdown type="button" class="navbar-toggle" data-toggle="collapse"
+                data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Rozwiń nawigację</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a routerLink="/"
+           style="cursor: pointer"
+           class="navbar-brand">Rectangular Gallery</a>
+      </div>
+      <div
+        class="navbar-collapse collapse" id="bs-example-navbar-collapse-1">
+        <ul #menuList class="nav navbar-nav">
+          <li routerLinkActive="active">
+            <a routerLink="output"
+               style="cursor: pointer"
+               class="active dropdown-toggle" data-toggle="dropdown">Upload</a>
+          </li>
+          <li routerLinkActive="active">
+            <a routerLink="gallery"
+               style="cursor: pointer"
+               class="active dropdown-toggle" data-toggle="dropdown">Gallery</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

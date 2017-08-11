@@ -1,3 +1,55 @@
-<p>
-  editor works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h2>Edit image!</h2><br>
+    </div>
+    <div class="col-xs-12">
+      <div class="col-xs-4 col-xs-offset-1">
+        <label for="borderColor">Border color:</label>
+        <input
+          ngModel
+          [value]="'' ? undefined : borderImgColor"
+          (change)="borderColor($event)"
+          type="color" id="borderColor"
+          class="form-control">
+      </div>
+      <div class="col-xs-4 col-xs-offset-1">
+        <br>
+        <label for="borderWidth">Border width (px):</label>
+        <input
+          ngModel
+          [value] = "'' ? undefined : borderImgWidth"
+          (change)="borderWidth($event)"
+          type="number" id="borderWidth"
+          class="form-control">
+      </div>
+      <div class="col-xs-4 col-xs-offset-1">
+        <br>
+        <label for="borderRadius">Border radius (px):</label>
+        <input
+          ngModel
+          [value]="'' ? undefined : borderImgRadius"
+          (change)="borderRadius($event)"
+          type="number" id="borderRadius"
+          class="form-control">
+      </div>
+      <div class="btn-box btn-block col-xs-12 text-center">
+        <hr>
+        <button class="btn btn-primary btn-group-lg" (click)="onSave()">Save</button>
+        <hr>
+      </div>
+    </div>
+    <div class="col-xs-12 img-block">
+      <div class="img-frame"
+           [ngStyle]="{'background-color': backgroundImgColor}">
+        <img
+          src="{{imageData?.url}}"
+          alt=""
+          [ngStyle]="{'border-radius.px': borderImgRadius,
+                      'border-width.px': borderImgWidth,
+                      'border-color': borderImgColor}"
+        >
+      </div>
+    </div>
+  </div>
+</div>

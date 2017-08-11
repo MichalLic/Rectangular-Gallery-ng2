@@ -1,3 +1,15 @@
-<p>
-  gallery works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6 col-md-4" *ngFor="let image of images; let i = index">
+      <a routerLink="../edit/{{i}}">
+        <img
+          [src]="image.url"
+          alt=""
+          [ngStyle]="{'border-radius.px': image.borderRadius,
+                      'border-width.px': image.borderWidth,
+                      'border-color': image.borderColor}"
+        >
+      </a>
+    </div>
+  </div>
+</div>
