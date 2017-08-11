@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UploadService} from '../upload.service';
+import {Image} from '../shared/image.model';
 
 @Component({
   selector: 'app-gallery',
@@ -7,7 +8,7 @@ import {UploadService} from '../upload.service';
   styleUrls: ['./gallery.component.css']
 })
 export class GalleryComponent implements OnInit {
-  images;
+  images: Image[];
 
   constructor(private uploadService: UploadService) {
   }

@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Headers, Http, Response} from '@angular/http';
 import 'rxjs/Rx';
+import {Image} from './shared/image.model';
 
 @Injectable()
 export class UploadService {
@@ -9,8 +10,9 @@ export class UploadService {
   constructor(private http: Http) {
   }
 
-  addImgData(imageData) {
+  addImgData(imageData: Image) {
     this.imagesData.push(imageData);
+    console.log(this.imagesData);
   }
 
   getImagesData() {
@@ -28,14 +30,5 @@ export class UploadService {
   uploadUrl() {
     const headers = new Headers({'Content-Type': 'application/json'});
     return this.http.put('https://rectangulargallery.firebaseio.com/data.json', this.getImagesData(), {headers: headers});
-  }
-
-  getUrls() {
-    return this.http.get('https://rectangulargallery.firebaseio.com/data.json')
-      .map(
-        (response: Response) => {
-          return response.json();
-        }
-      );
   }
 }

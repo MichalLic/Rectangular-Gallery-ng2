@@ -1,6 +1,7 @@
-import {Component, OnChanges, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UploadService} from '../upload.service';
 import {ActivatedRoute, Params, Route} from '@angular/router';
+import {Image} from '../shared/image.model';
 
 @Component({
   selector: 'app-editor',
@@ -9,12 +10,10 @@ import {ActivatedRoute, Params, Route} from '@angular/router';
 })
 export class EditorComponent implements OnInit {
   imageId: number;
-  imageData;
-  backgroundImgColor;
-  borderImgColor;
-  borderImgWidth;
-  borderImgRadius;
-  imgFrameStyle = [];
+  imageData: Image;
+  borderImgColor: string;
+  borderImgWidth: number;
+  borderImgRadius: number;
 
   constructor(private uploadService: UploadService,
               private route: ActivatedRoute) {
@@ -28,16 +27,16 @@ export class EditorComponent implements OnInit {
           console.log(this.imageId);
         }
       );
+    this.setImgObject();
+  }
+
+  setImgObject() {
     this.imageData = this.uploadService.getSingleImageData(this.imageId);
     this.borderImgRadius = this.imageData.borderRadius;
     this.borderImgWidth = this.imageData.borderWidth;
     this.borderImgColor = this.imageData.borderColor;
-  }
-
-  bgColor(event) {
-    console.log(event.target.value);
-    this.backgroundImgColor = event.target.value;
   };
+
 
   borderColor(event) {
     console.log(event.target.value);
@@ -47,23 +46,21 @@ export class EditorComponent implements OnInit {
   borderWidth(event) {
     console.log(event.target.value);
     this.borderImgWidth = event.target.value;
-  }
+  };
 
   borderRadius(event) {
     console.log(event.target.value);
     this.borderImgRadius = event.target.value;
-  }
+  };
 
   onSave() {
     const imageStyle = {
       url: this.uploadService.getSingleImageData(this.imageId).url,
       borderColor: this.borderImgColor,
       borderWidth: this.borderImgWidth,
-      borderRadius: this.borderImgRadius
+      borderRadius: this.borderImgRadius,
     };
-    this.imgFrameStyle.push({
-      bgColor: this.backgroundImgColor
-    });
+
     this.uploadService.updateImageData(this.imageId, imageStyle);
     this.uploadService.uploadUrl()
       .subscribe(

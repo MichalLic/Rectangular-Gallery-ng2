@@ -10,7 +10,8 @@ import * as firebase from 'firebase';
 
 
 export class OutputComponent implements OnInit {
-  progress;
+  progress: number;
+  isUploaded = false;
 
   constructor(private uploadService: UploadService) {
   }
@@ -20,6 +21,7 @@ export class OutputComponent implements OnInit {
 
   changeListner(event) {
     let that = this;
+    that.isUploaded = false;
     console.log(event.target.files[0]);
     const file = event.target.files[0];
     const metadata = {
@@ -64,6 +66,7 @@ export class OutputComponent implements OnInit {
       (response) => console.log(response),
       (error) => console.log(error),
     );
+    this.isUploaded = true;
     event.target.disabled = true;
   }
 
