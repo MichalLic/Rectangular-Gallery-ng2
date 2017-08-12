@@ -1,7 +1,10 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-6 col-md-4" *ngFor="let image of images; let i = index">
-      <a routerLink="../edit/{{i}}">
+    <div class="col-xs-6 col-md-4" *ngFor="let image of images; let i = index"
+         [@list]
+    >
+      <a routerLink="../edit/{{i}}"
+      >
         <img
           [src]="image.url"
           alt=""
