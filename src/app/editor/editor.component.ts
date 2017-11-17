@@ -11,7 +11,7 @@ import {Image} from '../shared/image.model';
 export class EditorComponent implements OnInit {
   imageId: number;
   imageData: Image;
-  borderImgColor: string;
+  borderImgColor: any;
   borderImgWidth: number;
   borderImgRadius: number;
 

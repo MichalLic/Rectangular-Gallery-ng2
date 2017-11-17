@@ -29,11 +29,11 @@ export class OutputComponent implements OnInit {
     };
     const uploadTask = firebase.storage().ref().child('images/' + file.name).put(file, metadata);
     uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
-      function (snapshot) {
-        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+       (snapshot) => {
+        const progress = (uploadTask.snapshot.bytesTransferred / uploadTask.snapshot.totalBytes) * 100;
         console.log('Upload is ' + progress + '% done');
         that.progress = progress;
-        switch (snapshot.state) {
+        switch (uploadTask.snapshot.state) {
           case firebase.storage.TaskState.PAUSED:
             console.log('Upload is paused');
             break;
